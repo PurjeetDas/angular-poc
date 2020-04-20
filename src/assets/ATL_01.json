@@ -1,0 +1,46 @@
+[ {
+	"attached": [{
+		"attachedTo": "ITE:Crane:ATL_CRANE1",
+		"category": "Container",
+		"gps": {
+			"latitude":33.794454,
+			"longitude":-84.439257
+		},
+		"name": "ABCD_123456",
+		"type": "IE"
+	}],
+	"category": "Crane",
+	"gps": {
+		"latitude":33.794454,
+		"longitude":-84.439257
+	},
+	"location": "Atlanta Intermodal Terminal",
+	"name": "ATL_CRANE1",
+	"type": "ITE"
+},
+{
+	"attached": [],
+	"category": "Container",
+	"gps": {
+		"latitude":33.792600,
+		"longitude":-84.438643
+	},
+	"name": "ABCD 123456",
+	"location": "Atlanta Intermodal Terminal",
+	"type": "IE"
+},
+{
+	"attached": [],
+	"category": "Container",
+	"gps": {
+		"latitude":33.792600,
+		"longitude":-84.438143
+	},
+	"name": "EMHU 4567",
+	"location": "Atlanta Intermodal Terminal",
+	"type": "IE"
+}
+
+
+
+]
