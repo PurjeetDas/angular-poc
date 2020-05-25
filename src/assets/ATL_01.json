@@ -22,8 +22,8 @@
 	"attached": [],
 	"category": "Container",
 	"gps": {
-		"latitude":33.792600,
-		"longitude":-84.438643
+		"latitude":33.796843,
+		"longitude":-84.444973
 	},
 	"name": "ABCD 123456",
 	"location": "Atlanta Intermodal Terminal",
@@ -33,8 +33,8 @@
 	"attached": [],
 	"category": "Container",
 	"gps": {
-		"latitude":33.792600,
-		"longitude":-84.438143
+		"latitude":33.796843,
+		"longitude":-84.444652
 	},
 	"name": "EMHU 4567",
 	"location": "Atlanta Intermodal Terminal",

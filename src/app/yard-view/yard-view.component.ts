@@ -4,8 +4,8 @@ import { ITraceable } from '../shared/interfaces';
 import { LoggerService } from '../core/services/logger.service';
 import { Subscription } from 'rxjs';
 import { IMqttMessage, MqttService } from 'ngx-mqtt';
-import { JsonPipe } from '@angular/common';
-
+import { Marker,icon} from "leaflet";
+import {SelectItem} from 'primeng/api';
 declare var google: any;
 @Component({
   selector: 'app-yard-view',
@@ -15,11 +15,12 @@ export class YardViewComponent implements OnInit,OnDestroy {
 
   private subscription: Subscription;
   traceableEntities:ITraceable[]=[];
+  containers: SelectItem[]=[];
   overlays: any[] =[];
   yardName: string ="";
   msg: any;
   topicname: string= "testtopic/1";
-  traceablemap:Map<string,object> = new Map<string,object>();
+  traceablemap:Map<string,Marker> = new Map<string,Marker>();
 
 
   constructor(
@@ -43,7 +44,7 @@ export class YardViewComponent implements OnInit,OnDestroy {
 
 
   ngOnInit() {
-   this.subscribeTopic();
+   //this.subscribeTopic();
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -52,23 +53,29 @@ export class YardViewComponent implements OnInit,OnDestroy {
   setOverlays(){
     this.overlays = [];
     this.traceablemap.forEach((value: any, key: string) => {
+     
       this.overlays.push(value);
     })
     this.cd.detectChanges();
   }
   
   setToTraceableMap(data:ITraceable){
-   
-    this.traceablemap.set(data.name,new google.maps.Marker
-      ({position: 
+    this.traceablemap.set(data.name, new Marker
+      ([data.gps.latitude,data.gps.longitude],
         {
-          lat: data.gps.latitude,
-          lng: data.gps.longitude,
-        },
-          title: data.name
+          icon: icon({
+            iconSize: [ 25, 41 ],
+            iconAnchor: [ 13, 41 ],
+            iconUrl: 'assets/images/marker-icon.png',
+            shadowUrl: 'assets/images/marker-shadow.png',
+            tooltipAnchor: [ 0, -41 ]
+         }),
         }
-      ));
-
+        ).bindTooltip(data.name, {
+          permanent: true,
+          opacity: 1,
+          direction: 'top'
+        }));
   }
   
   getTraceableEntities(){
@@ -76,6 +83,9 @@ export class YardViewComponent implements OnInit,OnDestroy {
     .subscribe((response: ITraceable[]) => {             
         for (var data of response) {
           this.yardName = data.location;
+          if('Container' === data.category){
+            this.containers.push({label:data.name, value:data.name})
+          }
           this.setToTraceableMap(data);
          }
          this.setOverlays();       
@@ -86,7 +96,6 @@ export class YardViewComponent implements OnInit,OnDestroy {
 
   sendmsg(): void {
     let obj:ITraceable = JSON.parse(this.msg);
-    //console.log("Name"+obj.name);
     this._mqttService.unsafePublish(this.topicname, JSON.stringify(obj), { qos: 1, retain: true })
     this.msg = ''
   }

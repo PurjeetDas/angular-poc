@@ -1,0 +1,12 @@
+
+<p-toast></p-toast>
+
+<div [style.height.px]="mapHeight" 
+leaflet
+(leafletClick)="mapOnClick($event)"
+[(leafletCenter)]="mapCenter"
+[leafletOptions]="options"
+(leafletMapReady)="onMapReady($event)"
+[leafletLayers]="layers"
+>
+</div>

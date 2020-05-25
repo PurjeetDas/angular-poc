@@ -1,8 +1,13 @@
 
 
-<br/>
-<br/>   
-<p-card header={{yardName}}>
+
+<p-card>
+    
+    
+   <p-card header="Create Work Order">
+    <app-yard-activity [containers]="containers"></app-yard-activity>
+   </p-card>
+   <br/>
     <app-yard-map [overlays]="overlays"></app-yard-map>
 </p-card>
 

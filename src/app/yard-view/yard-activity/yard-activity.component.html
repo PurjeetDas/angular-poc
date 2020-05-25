@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="p-3 bg-faded">
+    <div class="form-group row">
+      <label for="container" class="col-sm-3 col-form-label"><strong>Select Container</strong></label>
+      <div class="col-sm-3">
+        <p-dropdown [options]="containers" formControlName="container"> </p-dropdown>
+      </div>
+    </div>
+   <!-- <div class="form-group row">
+      <label for="fromlocation" class="col-sm-3 col-form-label"><strong>From Location</strong></label>
+      <div class="col-sm-3">
+        <input id="fromlocation" type="text" class="form-control" formControlName="fromlocation" />
+      </div>
+    </div> -->
+    <div class="form-group row">
+        <label for="tolocation" class="col-sm-3 col-form-label"><strong>To Location</strong></label>
+        <div class="col-sm-3">
+          <input id="tolocation" type="text" class="form-control" formControlName="tolocation" />
+        </div>
+      </div>
+<div class="row">
+    <div class="col-sm-6 text-right">
+      <button  style='margin-right:13px' pButton type="button" class="ui-button-secondary" label="Cancel" icon="pi pi-times" iconPos="left" (click)="cancel()"></button>
+      <button  style='margin-right:13px' pButton type="submit" class="ui-button-info"  icon="pi pi-save" iconPos="left" label="Save" [disabled]="!form.valid"></button>
+    </div>
+</div>
+  </form>
